@@ -10,3 +10,8 @@ class TestModels(TestCase):
         assert Note.objects.count() == 1, "Should be saved in database"
         assert note.title == "Reminders", "Should have a title"
         assert note.body == "Visit a dentist", "Should have a body"
+
+    def test_note_returns_title_when_stringified(self):
+        note = Note.objects.create(title="Reminders", body="Visit a dentist")
+
+        assert str(note) == "Reminders", "Should return title"
