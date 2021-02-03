@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 
 from .forms import NoteForm
@@ -16,10 +17,7 @@ class AddNoteView(CreateView):
     success_url = reverse_lazy("notes:add")
 
 
-class ListNotesView(TemplateView):
+class ListNotesView(ListView):
+    model = Note
+    context_object_name = "notes"
     template_name = "notes/list_notes.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["notes"] = Note.objects.all()
-        return context
