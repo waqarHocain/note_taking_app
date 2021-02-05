@@ -14,7 +14,7 @@ class HomepageView(TemplateView):
 class AddNoteView(CreateView):
     form_class = NoteForm
     template_name = "notes/add_note.html"
-    success_url = reverse_lazy("notes:add")
+    success_url = reverse_lazy("notes:list")
 
 
 class ListNotesView(ListView):
