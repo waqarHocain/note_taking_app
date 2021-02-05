@@ -6,5 +6,5 @@ app_name = "notes"
 urlpatterns = [
     path("", HomepageView.as_view(), name="homepage"),
     path("add/", AddNoteView.as_view(), name="add"),
-    path("list/", ListNotesView.as_view(), name="list"),
+    path("notes/", ListNotesView.as_view(), name="list"),
 ]
