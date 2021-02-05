@@ -20,6 +20,7 @@ class ListNotesView(ListView):
     model = Note
     context_object_name = "notes"
     template_name = "notes/list_notes.html"
+    ordering = ["-id"]
 
 
 class DetailNoteView(DetailView):

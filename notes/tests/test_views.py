@@ -85,16 +85,16 @@ class ListNotesView(TestCase):
 
         self.assertIsInstance(response.context["notes"][0], Note)
 
-    def test_all_note_objects_are_passed_in_context(self):
-        Note.objects.create(title="test", body="jfksdj fjdsl")
-        Note.objects.create(title="test", body="jfksdj fjdsl")
-        Note.objects.create(title="test", body="jfksdj fjdsl")
-
-        queryset = Note.objects.all()
+    def test_notes_are_retrieved_in_descending_order(self):
+        # this also tests all objects are passed in context
+        n1 = Note.objects.create(title="note 1", body="jfksdj fjdsl")
+        n2 = Note.objects.create(title="note 2", body="jfksdj fjdsl")
+        n3 = Note.objects.create(title="note 3", body="jfksdj fjdsl")
 
         response = self.client.get(self.url)
 
-        self.assertEqual(list(response.context["notes"]), list(queryset))
+        self.assertEqual(response.context["notes"][0], n3)
+        self.assertEqual(response.context["notes"][2], n1)
 
 
 class DetailNoteView(TestCase):
