@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
-from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 from .forms import NoteForm
 from .models import Note
@@ -19,3 +20,8 @@ class ListNotesView(ListView):
     model = Note
     context_object_name = "notes"
     template_name = "notes/list_notes.html"
+
+
+class DetailNoteView(DetailView):
+    model = Note
+    template_name = "notes/note_detail.html"

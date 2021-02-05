@@ -95,3 +95,23 @@ class ListNotesView(TestCase):
         response = self.client.get(self.url)
 
         self.assertEqual(list(response.context["notes"]), list(queryset))
+
+
+class DetailNoteView(TestCase):
+    def setUp(self):
+        self.note = Note.objects.create()
+        self.url = reverse("notes:detail", args=[self.note.id])
+
+    def test_request_resolves_to_200_status_code(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_uses_correct_template(self):
+        response = self.client.get(self.url)
+        template_name = "notes/note_detail.html"
+        self.assertIn(template_name, [template.name for template in response.templates])
+
+    def test_passes_correct_context_to_template(self):
+        response = self.client.get(self.url, args=[self.note.id])
+
+        self.assertIsInstance(response.context["note"], Note)
