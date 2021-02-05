@@ -5,7 +5,12 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button>Add</button>
+
+        {% if update %}
+            <button>Update</button>
+        {% else %}
+            <button>Add</button>
+        {% endif %}
 
     </form>
 {% endblock %}
