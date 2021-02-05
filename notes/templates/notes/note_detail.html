@@ -2,6 +2,10 @@
 
 
 {% block content %}
-    <h2>{{ note.title }}</h2>
-    <p>{{ note.body }}</p>
+
+<p><a href="{% url 'notes:list' %}">View all entries</a></p>
+
+<h2>{{ note.title }}</h2>
+<p>{{ note.body }}</p>
+
 {% endblock %}
