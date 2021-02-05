@@ -50,13 +50,13 @@ class AddNoteViewTest(TestCase):
         self.assertEqual(Note.objects.count(), 1)
         self.assertEqual(saved_note.title, "This is heading")
 
-    def test_redirects_to_note_listing_page_after_creating_note(self):
+    def test_redirects_to_note_detail_page_after_creating_note(self):
         response = self.client.post(
             self.url,
             data={"title": "This is heading", "body": "This is content of note"},
         )
 
-        expected_url = reverse("notes:list")
+        expected_url = reverse("notes:detail", args=[Note.objects.first().id])
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, expected_url)
