@@ -1,11 +1,21 @@
-{% extends "base.html" %}
+{% extends "notes/base.html" %}
 
 
 {% block content %}
 
 <p><a href="{% url 'notes:list' %}">View all entries</a></p>
 
-<h2>{{ note.title }}</h2>
-<p>{{ note.body }}</p>
+<div class="hidden" id="note-hidden-data">
+    <pre>
+        <p id="note-hidden-head">{{ note.title }}</p>
+        <p id="note-hidden-body">{{ note.body }}</p>
+    </pre>
+</div>
+
+<div id="note-container">
+    <h1 id="note-head"></h1>
+    <div id="note-body"></div>
+</div>
+
 
 {% endblock %}

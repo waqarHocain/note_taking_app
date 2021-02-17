@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,11 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% block css %}{% endblock %}
+  {% block css %}
+    <style>
+        .hidden {display: none;}
+    </style>
+  {% endblock %}
 
 </head>
 
@@ -23,9 +28,10 @@
       {% endblock %}
   </div>
 
-  {% block javascript %}
+  <script src="{% static 'notes/js/showdown.1_9_1.min.js' %}"></script>
+  <script src="{% static 'notes/js/main.js' %}"></script>
 
-  {% endblock %}
+  {% block javascript %}{% endblock %}
 </body>
 
 </html>
