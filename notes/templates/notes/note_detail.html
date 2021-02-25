@@ -15,6 +15,11 @@
     <h1 id="note-head"></h1>
     <div id="note-body"></div>
     <a href="{% url 'notes:update' note.id %}">Edit Note</a>
+
+    <form method="POST" action="{% url 'notes:delete'  note.id %}">
+        {% csrf_token %}
+        <button>Delete Note</button>
+    </form>
 </div>
 
 {% endblock %}

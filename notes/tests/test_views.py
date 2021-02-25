@@ -136,3 +136,22 @@ class UpdateNoteView(TestCase):
 
         self.assertEqual(response.context["update"], True)
         self.assertIsInstance(response.context["note"], Note)
+
+
+class DeleteNoteView(TestCase):
+    def test_deletes_a_note(self):
+        n1 = Note.objects.create(title="My Note 1", body="My note body text")
+        url = reverse("notes:delete", args=[n1.id])
+        response = self.client.post(url, data={})
+
+        self.assertEqual(Note.objects.count(), 0)
+
+    def test_redirects_to_notes_listing_page(self):
+        n1 = Note.objects.create(title="My Note 1", body="My note body text")
+        url = reverse("notes:delete", args=[n1.id])
+        response = self.client.post(url, data={})
+
+        expected_url = reverse("notes:list")
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, expected_url)
