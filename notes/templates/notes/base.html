@@ -4,8 +4,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Base Template{% endblock %}</title>
-  <meta name="author" content="">
+  <title>{% block title %}Notes in Markdown{% endblock %}</title>
+  <meta name="author" content="Waqar Mastan">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,14 @@
 <body>
   <div class="container">
       <header>
-          <h1>Noty</h1>
+          <h1>Notes</h1>
+
+          <nav>
+              <ul>
+                  <li><a href="{% url 'notes:add' %}">Add new note</a></li>
+                  <li><a href="{% url 'notes:list' %}">View all notes</a></li>
+              </ul>
+          </nav>
       </header>
 
       {% block content %}

@@ -1,9 +1,8 @@
 {% extends "notes/base.html" %}
 
+{% block title %} {{ note.title }} {% endblock %}
 
 {% block content %}
-
-<p><a href="{% url 'notes:list' %}">View all entries</a></p>
 
 <div class="hidden" id="note-hidden-data">
     <pre>
@@ -15,7 +14,7 @@
 <div id="note-container">
     <h1 id="note-head"></h1>
     <div id="note-body"></div>
+    <a href="{% url 'notes:update' note.id %}">Edit Note</a>
 </div>
-
 
 {% endblock %}
